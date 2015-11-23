@@ -5,6 +5,7 @@ import numpy as np
 import pylab as pl
 from sklearn import datasets
 from sklearn.tree import DecisionTreeRegressor
+from sklearn.metrics import mean_squared_error
 
 ################################
 ### ADD EXTRA LIBRARIES HERE ###
@@ -53,12 +54,7 @@ def performance_metric(label, prediction):
     ###################################
     
     # http://scikit-learn.org/stable/modules/classes.html#sklearn-metrics-metrics
-    # Explained variance score
-    # Mean absolute error
-    # Mean squared error
-    # Median absolute error
-    # R^2 score
-    return 0
+    return mean_squared_error(label, prediction)
 
 
 def split_data(city_data):
