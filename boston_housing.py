@@ -51,9 +51,14 @@ def performance_metric(label, prediction):
     ###################################
     ### Step 2. YOUR CODE GOES HERE ###
     ###################################
-
+    
     # http://scikit-learn.org/stable/modules/classes.html#sklearn-metrics-metrics
-    pass
+    # Explained variance score
+    # Mean absolute error
+    # Mean squared error
+    # Median absolute error
+    # R^2 score
+    return 0
 
 
 def split_data(city_data):
@@ -65,7 +70,8 @@ def split_data(city_data):
     ###################################
     ### Step 3. YOUR CODE GOES HERE ###
     ###################################
-    X_train, y_train, X_test, y_test = None
+    X_train, y_train = X, y
+    X_test, y_test = X, y
 
     return X_train, y_train, X_test, y_test
 
@@ -173,11 +179,11 @@ def fit_predict_model(city_data):
 
     # Fit the learner to the training data
     print "Final Model: "
-    print reg.fit(X, y)
+    #print reg.fit(X, y)
     
     # Use the model to predict the output of a particular sample
     x = [11.95, 0.00, 18.100, 0, 0.6590, 5.6090, 90.00, 1.385, 24, 680.0, 20.20, 332.09, 12.13]
-    y = reg.predict(x)
+    #y = reg.predict(x)
     print "House: " + str(x)
     print "Prediction: " + str(y)
 
@@ -192,7 +198,7 @@ def main():
 
     # Explore the data
     explore_city_data(city_data)
-"""
+
     # Training/Test dataset split
     X_train, y_train, X_test, y_test = split_data(city_data)
 
@@ -206,7 +212,7 @@ def main():
 
     # Tune and predict Model
     fit_predict_model(city_data)
-"""
+
 
 if __name__ == "__main__":
     main()
