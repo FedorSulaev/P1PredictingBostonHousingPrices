@@ -6,6 +6,7 @@ import pylab as pl
 from sklearn import datasets
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.metrics import mean_squared_error
+from sklearn import cross_validation
 
 ################################
 ### ADD EXTRA LIBRARIES HERE ###
@@ -54,6 +55,7 @@ def performance_metric(label, prediction):
     ###################################
     
     # http://scikit-learn.org/stable/modules/classes.html#sklearn-metrics-metrics
+    # Mean squared error
     return mean_squared_error(label, prediction)
 
 
@@ -66,8 +68,8 @@ def split_data(city_data):
     ###################################
     ### Step 3. YOUR CODE GOES HERE ###
     ###################################
-    X_train, y_train = X, y
-    X_test, y_test = X, y
+    X_train, X_test, y_train, y_test = cross_validation.train_test_split(
+        X, y, test_size = 0.4)
 
     return X_train, y_train, X_test, y_test
 
