@@ -3,6 +3,7 @@
 # Load libraries
 import numpy as np
 import pylab as pl
+import pandas as pd
 from sklearn import datasets
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.metrics import mean_squared_error
@@ -173,7 +174,7 @@ def fit_predict_model(city_data):
     # 1. Find the best performance metric
     # should be the same as your performance_metric procedure
     # http://scikit-learn.org/stable/modules/generated/sklearn.metrics.make_scorer.html
-    scorer = make_scorer(mean_squared_error)
+    scorer = make_scorer(mean_squared_error, greater_is_better=False)
 
     # 2. Use gridearch to fine tune the Decision Tree Regressor and find the best model
     # http://scikit-learn.org/stable/modules/generated/sklearn.grid_search.GridSearchCV.html#sklearn.grid_search.GridSearchCV
@@ -188,6 +189,12 @@ def fit_predict_model(city_data):
     y = reg.predict(x)
     print "House: " + str(x)
     print "Prediction: " + str(y)
+    print "Best model parameter:  " + str(reg.best_params_)
+    print np.mean(x)
+    print X.std()
+    Xdf = pd.DataFrame(X)
+    XdfMean = Xdf.mean(axis=1)
+    print np.mean(city_data.target[XdfMean[(XdfMean < (np.mean(x)+X.std())) & (XdfMean > (np.mean(x)-X.std()))].index.tolist()])
 
 
 def main():
